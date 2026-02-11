@@ -1,26 +1,34 @@
+# Use a specific version of the Harness provider
+terraform {
+  required_providers {
+    harness = {
+      source  = "harness/harness"
+      version = "~> 0.40"
+    }
+  }
+}
+
 provider "harness" {
   endpoint   = "https://app.harness.io/gateway"
   account_id = "T_JG6UCfQcye3MFhGUx3tw"
 }
 
-# Root module - creates organization
+# 1. Calling the Root Module
 module "harness_test_module" {
-  # Format: <HOSTNAME>/<ACCOUNT_ID>/<MODULE_NAME>/<SYSTEM>
+  # Format: <HOST>/<ACCOUNT>/<MODULE>/<SYSTEM>
   source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness"
   version = "1.0.0"
   
-  org_name        = "test-organization"
-  org_description = "Test organization created via module registry"
+  org_name = "test-organization"
 }
 
-# Submodule - creates user group
+# 2. Calling a Submodule
 module "rbac_submodule" {
-  # FIXED: Removed the extra double-quotes
-  # Format: <HOSTNAME>/<ACCOUNT_ID>/<MODULE_NAME>/<SYSTEM>//<SUBMODULE_PATH>
+  # Format: <HOST>/<ACCOUNT>/<MODULE>/<SYSTEM>//<PATH_TO_SUBMODULE>
+  # REQUIRED: The "harness" system name must be before the "//"
   source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness//modules/rbac"
   version = "1.0.0"
   
   org_id          = module.harness_test_module.organization_id
   user_group_name = "platform-team"
-  description     = "Platform engineering team"
 }
