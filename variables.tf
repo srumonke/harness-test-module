@@ -17,10 +17,8 @@ variable "org_description" {
 
 variable "tags" {
   description = "Tags for the organization"
-  type        = map(string)
-  default = {
-    "managed-by" = "terraform"
-  }
+  type        = set(string) # Change from map(string)
+  default     = ["managed-by:terraform"] # Change from map format
 }
 
 variable "user_group_name" {
