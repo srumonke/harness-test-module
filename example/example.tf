@@ -17,7 +17,7 @@ provider "harness" {
 module "harness_test_module" {
   # Format: <HOST>/<ACCOUNT>/<MODULE>/<SYSTEM>
   source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness"
-  version = "1.0.0"
+  version = "1.1.0"
   
   org_name = "test-organization"
 }
@@ -27,7 +27,7 @@ module "rbac_submodule" {
   # Format: <HOST>/<ACCOUNT>/<MODULE>/<SYSTEM>//<PATH_TO_SUBMODULE>
   # REQUIRED: The "harness" system name must be before the "//"
   source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness//modules/rbac"
-  version = "1.0.0"
+  version = "1.1.0"
   
   org_id          = module.harness_test_module.organization_id
   user_group_name = "platform-team"
