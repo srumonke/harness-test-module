@@ -26,7 +26,6 @@ resource "harness_platform_organization" "this" {
 
 module "rbac" {
   # Note: The version here should match the tag you are about to push
-  # source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness//modules/rbac"
   source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness"
   version = "1.5.0"
   
