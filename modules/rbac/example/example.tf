@@ -30,7 +30,7 @@ module "harness_test_module" {
 
 # Submodule - creates user group
 module "rbac_submodule" {
-  source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module//modules/rbac"
+  source  = ""app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness//modules/rbac""
   version = "1.0.0"
   
   org_id          = module.harness_test_module.organization_id
