@@ -26,8 +26,8 @@ resource "harness_platform_organization" "this" {
 
 module "rbac" {
   # Note: The version here should match the tag you are about to push
-  source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness"
-  version = "1.5.0"
+  source  = "app.harness.io/T_JG6UCfQcye3MFhGUx3tw/harness_test_module/harness//modules/rbac"
+  version = "1.7.0"
   
   org_id          = harness_platform_organization.this.id
   user_group_name = "platform-team"
